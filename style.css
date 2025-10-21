@@ -1,0 +1,1936 @@
+/* === FONT FAMILY === */
+
+/* --- Font: Great Vibes --- */
+@font-face {
+    font-family:'Great Vibes'; /* Nama font harus sama dengan yang Anda gunakan di CSS */
+    src: url('Assets/Fonts/great-vibes-v20-latin-regular.woff2') format('woff2');
+    font-weight: normal; /* Great Vibes biasanya hanya memiliki satu ketebalan */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Font: Garamond --- */
+@font-face {
+    font-family:'Garamond'; /* Nama font harus sama */
+    src: url('Assets/Fonts/cormorant-garamond-v20-latin-regular.woff2') format('woff2');
+    font-weight: 400; /* Untuk ketebalan normal */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- Font: Montserrat --- */
+@font-face {
+    font-family: 'Montserrat'; /* Nama font harus sama */
+    src: url('Assets/Fonts/montserrat-v30-latin-regular.woff2') format('woff2');
+    font-weight: 400; /* Untuk ketebalan normal */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Gaya body: latar belakang, warna teks, tata letak flex untuk tinggi penuh */
+
+.hidden {
+  display: none !important;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+:root {
+  --cover-height: 100svh;
+}
+
+
+body.cover-active {
+  overflow: hidden;
+  height: 100svh;
+}
+
+
+body {
+    background-color: #F8F0E3; /* Latar belakang abu-abu muda default */
+    color: #1F2937; /* Teks abu-abu gelap default */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Tinggi minimum viewport */
+    font-family: 'Garamond'; /* Font default */
+    margin: 0; /* Hapus margin default browser */
+    padding: 0; /* Hapus padding default browser */
+}
+
+/* Gaya bagian umum: tata letak flex, perataan. Warna latar belakang & min-height spesifik di ID. */
+section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Perataan konten ke tengah */
+    justify-content: flex-start; /* Justifikasi konten ke atas */
+    min-height: 100vh; /* Setiap bagian mengambil setidaknya tinggi viewport penuh secara default */
+    width: 100%; /* Pastikan bagian mengambil lebar penuh */
+    padding-top: 3rem; /* Tambahkan padding agar konten tidak terlalu mepet atas */
+    padding-bottom: 3rem; /* Tambahkan padding agar konten tidak terlalu mepet bawah */
+    z-index: 3;
+}
+
+
+/* ======== ANIMASI ===== */
+/* Kode Semua Animasi ada disini */
+
+/* Utility Animasi */
+.fade-up-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.fade-up-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-left-on-scroll {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.slide-left-on-scroll.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+.cover-slide-up {
+  animation: slide-up-cover 0.8s ease-out forwards;
+  position: relative !important; 
+  z-index: 10 !important;
+}
+
+/* === GAYA SPESIFIK UNTUK SETIAP SECTION ID === */
+
+#cover-page {
+	will-change: background-position;
+	height: var(--cover-height, 100dvh); /* fallback jika JS belum sempat jalan */
+	position: relative;
+	top: 0;
+	left: 0;
+	z-index: 0;
+    background-color: #F8F0E3; /* Latar belakang krem muda untuk sampul */
+    overflow: visible; /* Sembunyikan overflow untuk animasi */
+    width: 100%; /* Pastikan halaman sampul mengambil lebar penuh */
+    display: flex; /* Gunakan flex untuk memusatkan konten */
+    align-items: center; /* Pusatkan secara vertikal */
+	flex-direction: column;
+    justify-content: center; /* Pusatkan secara horizontal */
+    padding: 1rem; /* Tambahkan kembali padding untuk konten cover page */
+
+    /* ----- Properti background baru untuk foto dan gradasi ----- */
+    /* Pastikan warna gradasi (rgba) sesuai dengan background-color #F8F0E3 */
+    background-image: url('Assets/Foto.pengantin/Berdua jawa cream 0001-8.png'); /* Sesuaikan path gambar Anda */
+
+    background-size: cover; /* Foto menutupi area yang dialokasikan */
+    background-position: center -20rem; /* Fokuskan bagian bawah foto */
+    background-repeat: no-repeat; /* Mencegah pengulangan foto */
+    transition: opacity 0.5s ease-out; /* Tambahkan transisi ini */
+}
+
+/* Misal untuk mobile: geser foto sedikit lebih ke atas */
+@media screen and (max-width: 767px) {
+  #cover-page {
+    background-position: center -8rem;
+  }
+}
+
+/* Untuk desktop besar: kembalikan atau sesuaikan ulang */
+@media screen and (min-width: 1024px) {
+  #cover-page {
+    background-position: center -14rem;
+  }
+}
+
+
+#cover-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(248, 240, 227, 0) 0%,
+    rgba(248, 240, 227, 1) 90%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+/* Mobile: ubah titik berhenti gradient saja */
+@media screen and (max-width: 767px) {
+  #cover-page::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(248, 240, 227, 0) 0%,
+	  rgba(248, 240, 227, 0) 10%,
+      rgba(248, 240, 227, 1) 60%
+    );
+  }
+}
+
+/* Desktop besar: perpanjang gradasi tanpa menimpa gambar */
+@media screen and (min-width: 1024px) {
+  #cover-page::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(248, 240, 227, 0) 0%,
+      rgba(248, 240, 227, 1) 120%
+    );
+  }
+}
+
+
+
+.cover-konten {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	position: relative;
+    text-align: center;
+    color: #333;
+    z-index: 2;
+    width: 100%;
+    max-width: 48rem;
+	margin-top: 10vh;
+	margin-bottom: auto;
+	padding: 0.1rem;
+}
+
+#cover-page .cover-konten > * {
+    opacity: 0;
+}
+
+/* Media query untuk layar desktop */
+@media screen and (min-width: 1024px) {
+  .cover-konten {
+    /* Geser ke bawah dengan menambah translate Y atau margin */
+    /*transform: translate(-50%, -40%); /* 10% ke bawah dari center */
+    /* Atau alternatif: */
+    margin-top: 12vh;
+  }
+}
+
+/* Pembungkus utama untuk konten setelah cover */
+/* Ini menggantikan #main-invitation-page yang lama */
+#main-content-wrapper {
+    /* Gaya untuk transisi atau display saat JS mengaktifkannya */
+    transition: opacity 0.5s ease-in-out; /* Efek fade-in */
+    /* display: flex; /* Atau block, tergantung kebutuhan layout */
+    /* Tidak perlu margin-top negatif jika Anda hanya menyembunyikan cover-page */
+}
+
+/* #cover-page.slide-up {
+    transform: translateY(-100vh);
+    opacity: 0;
+    pointer-events: none;
+} */
+/* Kelas .hidden di JS sudah cukup untuk menyembunyikan */
+
+/* #main-content.visible {
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0;
+} */
+/* Kelas .visible di JS sekarang akan menargetkan #main-content-wrapper */
+
+
+/* Gaya untuk nama DINDA di halaman sampul */
+.cover-element.slide-from-top.fast-delay-1 { 
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.25;
+    font-family: 'Great Vibes'; /* Font skrip */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Bayangan teks halus */
+    color: #cba979; /* Warna teks untuk Dinda */
+    text-align: center;
+}
+
+/* Gaya untuk ampersand (&) di halaman sampul */
+.cover-element.slide-from-top.fast-delay-2 {
+    font-size: clamp(1rem, 6vw, 1rem);
+    font-family: 'Garamond'; /* Font serif */
+    color: #4B5563; /* Warna abu-abu gelap untuk ampersand */
+    text-align: center;
+}
+
+/* Gaya untuk nama ANGGA di halaman sampul */
+.cover-element.slide-from-top.fast-delay-3 {
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 1.25;
+    font-family: 'Great Vibes';
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    color: #cba979; /* Warna ungu gelap untuk Angga */
+    text-align: center;
+}
+
+/* Gaya untuk teks "Kepada yang terhormat bapak, ibu, saudara/i" */
+.cover-element.slide-from-bottom.slow-delay-1 {
+    margin-top: 2rem;
+    color: #4B5563;
+    font-size: 0.8rem;
+    font-family: 'Garamond';
+    font-weight: 600;
+}
+
+/* Gaya untuk teks "Nama Tamu" */
+.cover-element.slide-from-bottom.slow-delay-1.guest-name-line {
+    margin-top: 1rem;
+    color: #4B5563;
+    font-size: 1rem;
+    font-family: 'Garamond';
+    font-weight: 600;
+}
+
+/* Gaya untuk tombol "Buka Undangan" */
+.cover-element.slide-from-bottom.slow-delay-3 {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #cba979; /* Warna solid */
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: solid;
+    border-width: 0;
+    border-color: white;
+    border-radius: 9999px; /* Sepenuhnya bulat */
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); /* Bayangan */
+    transition: all 0.3s ease-in-out; /* Transisi halus */
+    transform: scale(1);
+}
+
+.cover-element.slide-from-bottom.slow-delay-3:hover {
+    background-color: #b59669; /* Warna solid saat hover */
+    transform: scale(1.05); /* Sedikit membesar saat hover */
+}
+
+/* === Gaya Dekorasi Global === */
+.decoration-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.deco-item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.4));
+  z-index: 2;
+}
+
+/* Variabel Gambar Bunga */
+.deco-item.has-bunga-saja {
+  --bunga-image: url('Assets/Hiasan/bunga.webp');
+  --bunga-size: 100.1% 100.1%;
+  --bunga-position: center;
+  --bunga-repeat: no-repeat;
+}
+
+.deco-item.has-bunga-tangkai {
+  --bunga-image: url('Assets/Hiasan/bunga&tangkai.webp');
+  --bunga-size: 100.1% 100.1%;
+  --bunga-position: center;
+  --bunga-repeat: no-repeat;
+}
+
+/* Jika hanya 1 layer bunga (tanpa tekstur/noda) */
+.deco-item.has-bunga-saja:not(.has-tekstur):not(.has-noda),
+.deco-item.has-bunga-tangkai:not(.has-tekstur):not(.has-noda) {
+  background-image:  var(--bunga-image);
+  background-size:   var(--bunga-size);
+  background-position: var(--bunga-position);
+  background-repeat:  var(--bunga-repeat);
+}
+
+/* === GAYA SPESIFIK UNTUK SECTION UTAMA BARU === */
+
+/* Bagian Halaman Awal Undangan */
+#initial-invitation-section {
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+    min-height: 70vh;
+    overflow: hidden;
+	
+  /* Ukuran foto */	
+  --image-size-default: clamp(12rem, 20vw, 18rem);
+
+	
+  /* Ukuran hiasan utama atas */
+  --deco-initial-invitation-size-top-main: clamp(182px, 30vw, 242px);
+  --deco-initial-invitation-top-top-main: -3rem;
+  --deco-initial-invitation-left-top-main: -3.5rem;
+  --deco-initial-invitation-right-top-main: -3.5rem;
+
+  /* Ukuran hiasan overlay atas*/
+  --deco-initial-invitation-size-top-overlay: clamp(122px, 30vw, 162px);
+  --deco-initial-invitation-top-top-overlay: -2rem;
+  --deco-initial-invitation-left-top-overlay: -2.5rem;
+  --deco-initial-invitation-right-top-overlay: -2.5rem;
+  
+  /* Ukuran hiasan utama bawah */
+  --deco-initial-invitation-size-bottom-main: clamp(162px, 25vw, 202px);
+  --deco-initial-invitation-bottom-bottom-main: -2.5rem;
+  --deco-initial-invitation-left-bottom-main: -3.5rem;
+  --deco-initial-invitation-right-bottom-main: -3.5rem;
+
+  /* Ukuran hiasan overlay bawah*/
+  --deco-initial-invitation-size-bottom-overlay: clamp(102px, 25vw, 132px);
+  --deco-initial-invitation-bottom-bottom-overlay: -1rem;
+  --deco-initial-invitation-left-bottom-overlay: -2rem;
+  --deco-initial-invitation-right-bottom-overlay: -2rem;
+}
+
+@media (min-width: 768px) {
+  #initial-invitation-section {
+	  
+	/* Ukuran foto */  
+	--image-size-default: clamp(11rem, 15vw, 14rem);
+	
+	/* Ukuran hiasan utama atas */
+    --deco-initial-invitation-size-top-main: clamp(202px, 40vw, 262px);
+    --deco-initial-invitation-top-top-main: -4.5rem;
+    --deco-initial-invitation-left-top-main: -4rem;
+    --deco-initial-invitation-right-top-main: -4rem;
+	
+	/* Ukuran hiasan overlay atas*/
+	--deco-initial-invitation-size-top-overlay: clamp(132px, 40vw, 192px);
+	--deco-initial-invitation-top-top-overlay: -3.5rem;
+	--deco-initial-invitation-left-top-overlay: -3rem;
+	--deco-initial-invitation-right-top-overlay: -3rem;
+	
+	/* Ukuran hiasan utama bawah */
+    --deco-initial-invitation-size-bottom-main: clamp(182px, 35vw, 242px);
+    --deco-initial-invitation-bottom-bottom-main: -3.5rem;
+    --deco-initial-invitation-left-bottom-main: -3rem;
+    --deco-initial-invitation-right-bottom-main: -3rem;
+	
+	/* Ukuran hiasan overlay bawah*/
+	--deco-initial-invitation-size-bottom-overlay: clamp(122px, 35vw, 172px);
+	--deco-initial-invitation-bottom-bottom-overlay: -2rem;
+	--deco-initial-invitation-left-bottom-overlay: -1.5rem;
+	--deco-initial-invitation-right-bottom-overlay: -1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #initial-invitation-section {
+	  
+	/* Ukuran foto */  
+	--image-size-default: clamp(13rem, 15vw, 16rem);
+	
+	/* Ukuran hiasan utama atas */
+    --deco-initial-invitation-size-top-main: clamp(222px, 50vw, 282px);
+    --deco-initial-invitation-top-top-main: -5rem;
+    --deco-initial-invitation-left-top-main: -4rem;
+    --deco-initial-invitation-right-top-main: -4rem;
+	
+	/* Ukuran hiasan overlay atas*/
+	--deco-initial-invitation-size-top-overlay: clamp(152px, 50vw, 212px);
+	--deco-initial-invitation-top-top-overlay: -4rem;
+	--deco-initial-invitation-left-top-overlay: -3rem;
+	--deco-initial-invitation-right-top-overlay: -3rem;
+	
+	/* Ukuran hiasan utama bawah */
+    --deco-initial-invitation-size-bottom-main: clamp(202px, 45vw, 262px);
+    --deco-initial-invitation-bottom-bottom-main: -4rem;
+    --deco-initial-invitation-left-bottom-main: -3.5rem;
+    --deco-initial-invitation-right-bottom-main: -3.5rem;
+	
+	/* Ukuran hiasan overlay bawah*/
+	--deco-initial-invitation-size-bottom-overlay: clamp(142px, 45vw, 192px);
+	--deco-initial-invitation-bottom-bottom-overlay: -2.5rem;
+	--deco-initial-invitation-left-bottom-overlay: -2rem;
+	--deco-initial-invitation-right-bottom-overlay: -2rem;
+  }
+}
+
+/* Bagian Kutipan */
+#quote-section {
+    background-color: #cba979; /* Latar belakang coklat muda */
+    color: white; /* Warna teks default untuk bagian ini */
+    min-height: 15rem;
+}
+
+/* Bagian Pembuka & Profil Mempelai */
+#opening-greeting-and-profile-section {
+    position: relative;
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+    overflow: hidden;
+}
+
+/* Bagian Cerita Cinta */
+#love-story-section {
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+	overflow: hidden;
+}
+
+/* Bagian Detail Acara & RSVP */
+#event-rsvp-section {
+    background-color: #cba979; /* Latar belakang krem muda */
+}
+
+/* Bagian Galeri */
+#gallery-section {
+    position: relative;
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+    overflow: hidden;
+	
+  /* Ukuran hiasan utama */
+  --deco-gallery-size-main: clamp(162px, 25vw, 202px);
+  --deco-gallery-top-main: -2.5rem;
+  --deco-gallery-left-main: -3.5rem;
+  --deco-gallery-right-main: -3.5rem;
+
+  /* Ukuran hiasan overlay */
+  --deco-gallery-size-overlay: clamp(102px, 25vw, 132px);
+  --deco-gallery-top-overlay: -1rem;
+  --deco-gallery-left-overlay: -2rem;
+  --deco-gallery-right-overlay: -2rem;
+}
+
+/* === MEDIA QUERY TABLET (>=768px) === */
+@media (min-width: 768px) {
+  #gallery-section {
+    /* Ukuran hiasan utama */
+    --deco-gallery-size-main: clamp(180px, 22vw, 240px);
+    --deco-gallery-top-main: -3rem;
+    --deco-gallery-left-main: -4rem;
+    --deco-gallery-right-main: -4rem;
+
+    /* Ukuran hiasan overlay */
+    --deco-gallery-size-overlay: clamp(90px, 20vw, 120px);
+    --deco-gallery-top-overlay: -1.2rem;
+    --deco-gallery-left-overlay: -2.5rem;
+    --deco-gallery-right-overlay: -2.5rem;
+  }
+}
+
+/* === MEDIA QUERY DESKTOP (>=1024px) === */
+@media (min-width: 1024px) {
+  #gallery-section {
+    /* Ukuran hiasan utama */
+    --deco-gallery-size-main: clamp(200px, 20vw, 260px);
+    --deco-gallery-top-main: -3.2rem;
+    --deco-gallery-left-main: -5rem;
+    --deco-gallery-right-main: -5rem;
+
+    /* Ukuran hiasan overlay */
+    --deco-gallery-size-overlay: clamp(110px, 18vw, 150px);
+    --deco-gallery-top-overlay: -1.5rem;
+    --deco-gallery-left-overlay: -3rem;
+    --deco-gallery-right-overlay: -3rem;
+  }
+}
+
+
+/* Bagian Hadiah */
+#gift-section {
+    background-color: #f5f0d5; /* Sesuaikan warna latar belakang jika perlu */
+    min-height: 20vh; /* Jika Anda ingin tinggi spesifik, bisa atur min-height di sini */
+}
+    
+/* Bagian Penutup */
+#closing-section {
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+    padding-bottom: 0; /* Padding ekstra di bagian bawah */
+    min-height: 20vh;
+}
+
+/* Bagian Promosi */
+#promotion-section {
+    background-color: #f5f0d5; /* Latar belakang krem muda */
+    min-height: 10vh;
+}
+
+
+/* Pembungkus konten untuk bagian */
+.section-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 48rem; /* Lebar maksimum untuk konten */
+    padding: 2rem 1rem; /* Padding untuk konten */
+    margin-left: auto; /* Pusatkan konten */
+    margin-right: auto; /* Pusatkan konten */
+    text-align: center; /* Pusatkan teks secara default */
+}
+@media (min-width: 768px) {
+    .section-content {
+        padding: 2rem;
+    }
+}
+
+/* ————— CSS Spesifik Texture & Blotch ————— */
+.has-texture .decoration-layer .deco-item.section-texture {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('Assets/Hiasan/tekstur-2-kompress.png');
+  background-size: 600px auto;
+  background-repeat: repeat;
+  opacity: 0.3;
+  z-index: 0;
+  filter: none !important;
+}
+
+
+/* === HALAMAN AWAL === */
+
+/* Gaya khusus untuk placeholder gambar profil */
+/* Gaya untuk placeholder gambar Halaman awal */
+.awal-image-placeholder {
+    width: var(--image-size-default);
+	height: var(--image-size-default); /* Tinggi tetap */
+    background-color: #E5E7EB;
+    border-radius: 50%;
+	border: 3px solid #cba979;
+    overflow: hidden; /* Penting untuk memastikan gambar tidak keluar dari border-radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+    font-size: 0.875rem;
+    font-style: italic;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	margin: 0 auto 2rem;
+}
+
+/* Gaya untuk foto di awal */
+.awal-mempelai-image {
+    width: 100%; /* Membuat gambar mengisi lebar wadahnya */
+    height: 100%; /* Atur tinggi tetap untuk konsistensi (sesuaikan) */
+    object-fit: cover; /* Penting: Memastikan gambar mengisi area tanpa terdistorsi */
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+    transition: transform 0.3s ease-in-out; /* Efek transisi saat hover */
+}
+
+.main-name-dinda, .main-name-angga {
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.25;
+    font-family: 'Great Vibes';
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1); /* Bayangan teks halus */
+}
+
+.main-name-dinda { color: #cba979; } /* Warna untuk Dinda */
+.main-name-angga { color: #cba979; } /* Warna untuk Angga */
+
+/* Gaya untuk ampersand di halaman utama */
+.main-name-ampersand {
+    font-size: clamp(1rem, 6vw, 1rem);
+    font-family: 'Garamond';
+    color: #4B5563;
+    text-align: center;
+}
+
+/* Gaya untuk teks undangan */
+.invitation-text {
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+    margin-top: 1rem;
+    line-height: 1.625;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+    width: 25ch; /* Sesuaikan nilai ini untuk lebar teks */
+    margin: 2rem auto 0.5rem; /* 2rem untuk atas/bawah, auto untuk kiri/kanan */
+}
+
+/* Gaya untuk tanggal acara */
+.event-date {
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+	font-weight: 600;
+    margin-top: 1rem;
+    font-family: ui-monospace;
+    color: #cba979;
+    text-align: center;
+}
+
+/* Latar Belakang Halaman Awal - Kini kelas ini digunakan di dalam section, 
+   jadi background-color-nya bisa dihapus jika sudah diatur di ID section. */
+.latarbelakang-halaman-awal {
+    /* background-color: #423901; */ /* Hapus ini jika #initial-invitation-section sudah mengatur background */
+    padding: 2rem; /* Tambahkan padding */
+    border-radius: 0; /* Sudut membulat */
+    margin-bottom: 2rem; /* Spasi di bawah */
+    width: 100%; /* Pastikan lebar penuh */
+    min-height: 70vh; /* Pertahankan jika ingin efek lebih pendek dari 100vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gaya Hiasan initial */
+
+#initial-invitation-section .decoration-layer .deco-item {
+    /* Gaya umum untuk semua hiasan di gallery (bisa beda filter atau animasi) */
+    
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3)); /* Mungkin bayangan lebih tipis */
+    /*animation: none; /* Mungkin tidak ada animasi atau animasi yang berbeda */
+    
+}
+
+/* = Hiasan Atas = */
+/* Hiasan kiri atas utama */
+#initial-invitation-section .decoration-layer .deco-item.top-left-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-top-main);
+  height: var(--deco-initial-invitation-size-top-main);
+  top: var(--deco-initial-invitation-top-top-main);
+  left: var(--deco-initial-invitation-left-top-main);
+}
+
+/* Hiasan kanan Atas utama */
+#initial-invitation-section .decoration-layer .deco-item.top-right-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-top-main);
+  height: var(--deco-initial-invitation-size-top-main);
+  top: var(--deco-initial-invitation-top-top-main);
+  right: var(--deco-initial-invitation-right-top-main);
+  transform: scaleX(-1);
+}
+
+/* Overlay kiri atas */
+#initial-invitation-section .decoration-layer .deco-item.top-left-overlay-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-top-overlay);
+  height: var(--deco-initial-invitation-size-top-overlay);
+  top: var(--deco-initial-invitation-top-top-overlay);
+  left: var(--deco-initial-invitation-left-top-overlay);
+}
+
+/* Overlay kanan atas */
+#initial-invitation-section .decoration-layer .deco-item.top-right-overlay-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-top-overlay);
+  height: var(--deco-initial-invitation-size-top-overlay);
+  top: var(--deco-initial-invitation-top-top-overlay);
+  right: var(--deco-initial-invitation-right-top-overlay);
+  transform: scaleX(-1);
+}    
+
+/* = Hiasan bawah = */
+/* Hiasan kiri Bawah utama */
+#initial-invitation-section .decoration-layer .deco-item.bottom-left-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-bottom-main);
+  height: var(--deco-initial-invitation-size-bottom-main);
+  bottom: var(--deco-initial-invitation-bottom-bottom-main);
+  left: var(--deco-initial-invitation-left-bottom-main);
+}
+
+/* Hiasan kanan bawah utama */
+#initial-invitation-section .decoration-layer .deco-item.bottom-right-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-bottom-main);
+  height: var(--deco-initial-invitation-size-bottom-main);
+  bottom: var(--deco-initial-invitation-bottom-bottom-main);
+  right: var(--deco-initial-invitation-right-bottom-main);
+  transform: scaleX(-1);
+}
+
+/* Overlay kiri atas */
+#initial-invitation-section .decoration-layer .deco-item.bottom-left-overlay-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-bottom-overlay);
+  height: var(--deco-initial-invitation-size-bottom-overlay);
+  bottom: var(--deco-initial-invitation-bottom-bottom-overlay);
+  left: var(--deco-initial-invitation-left-bottom-overlay);
+}
+
+/* Overlay kanan atas */
+#initial-invitation-section .decoration-layer .deco-item.bottom-right-overlay-initial.has-bunga-saja {
+  width: var(--deco-initial-invitation-size-bottom-overlay);
+  height: var(--deco-initial-invitation-size-bottom-overlay);
+  bottom: var(--deco-initial-invitation-bottom-bottom-overlay);
+  right: var(--deco-initial-invitation-right-bottom-overlay);
+  transform: scaleX(-1);
+}
+
+/* Noda Initial Invitation */
+.blotch-initial-invitation {
+  position: absolute;
+  background: url('Assets/Hiasan/abstract-blur-spotting.webp') center/contain no-repeat;
+  width: 424px;
+  height: 424px;
+  top: 20%;
+  left: -5%;
+  opacity: 0.1;
+  z-index: 1;
+  transform: rotate(340deg);
+}
+
+/* Responsif: blotch size */
+@media (min-width: 768px) {
+  .blotch-initial-invitation {
+    width: 768px; height: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .blotch-initial-invitation {
+    width: 1024px; height: 1024px;
+  }
+}
+
+/* === PENATAAN QUOTES === */
+/* Gaya untuk teks kutipan */
+.quote-text {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    font-style: italic;
+    line-height: 1.625;
+    font-family: 'Garamond';
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Gaya untuk sumber kutipan */
+.quote-source {
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-top: 1rem;
+    font-family: 'Garamond';
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Bentuk latar .quote dan source */
+.quote-background-box {
+    background-color: rgba(255, 255, 255, 0); /* Transparan */
+    border: 2px solid white; /* Outline putih */
+    border-radius: 1rem; /* Sudut melingkar 1rem */
+    padding: 1.5rem; /* Padding internal agar teks tidak menempel outline */
+    margin: 0 auto; /* Memusatkan persegi panjang */
+    width: 95%; /* Mengisi sebagian besar lebar yang tersedia */
+    max-width: 40rem; /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+}
+
+/* =================================================
+   Section Pembuka & Profil Mempelai
+   ================================================= */
+#opening-greeting-and-profile-section .latarbelakang-pembuka.section-content {
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+}
+
+/* Salam & Teks Undangan */
+.opening-greeting {
+  font-family: 'Great Vibes';
+  color: #cba979;
+  text-align: center;
+  font-size: clamp(1rem, 3.5vw, 2rem);
+}
+
+.opening-invitation {
+  font-family: 'Garamond';
+  color: #374151;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+}
+
+/* Wrapper Foto & Deco-Item */
+#opening-greeting-and-profile-section .image-wrapper {
+  position: relative;
+  display: inline-block;
+  /*overflow: hidden;*/
+  margin: 2rem auto;
+  z-index: 4;
+}
+
+#opening-greeting-and-profile-section .image-wrapper img {
+  width: 12rem;
+  max-width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  border: 3px solid #cba979;
+  box-shadow:
+    0 4px 6px -1px rgba(0,0,0,0.1),
+    0 2px 4px -1px rgba(0,0,0,0.06);
+  background-color: #E5E7EB;
+}
+
+/* Deco-item di dalam image-wrapper (background di-handle di aturan global) */
+#opening-greeting-and-profile-section
+  .image-wrapper .deco-item {
+  position: absolute;
+  z-index: 5;
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+}
+
+/* Posisi Hiasan Dinda (tanpa butuh .dinda-wrapper) */
+#opening-greeting-and-profile-section .image-wrapper.profile-placeholder
+  .dinda-photos-pembuka.has-bunga-tangkai {
+  width: 56.25px;
+  height: 84.30px;
+  top: 20%; /* tweak di inspector lalu salin nilai pasti */
+  right: -11%;
+  transform: scaleX(-1) rotate(14deg);
+}
+
+#opening-greeting-and-profile-section .image-wrapper.profile-placeholder
+  .dinda-photos-pembuka.has-bunga-saja {
+  width: 60px;
+  height: 60px;
+  top: 44%;
+  right: -15%;
+  transform: rotate(312deg);
+}
+
+/* Posisi Hiasan Angga */
+#opening-greeting-and-profile-section .image-wrapper.profile-placeholder
+  .angga-photos-pembuka.has-bunga-tangkai {
+  width: 56.25px;
+  height: 84.30px;
+  top: 20%; /* tweak di inspector lalu salin nilai pasti */
+  left: -11%;
+  transform: rotate(14deg);
+}
+
+#opening-greeting-and-profile-section .image-wrapper.profile-placeholder
+  .angga-photos-pembuka.has-bunga-saja {
+  width: 60px;
+  height: 60px;
+  top: 44%;
+  left: -15%;
+  transform: rotate(312deg);
+}
+
+/* Nama & Keterangan */
+.full-name-dinda,
+.full-name-angga {
+  font-family: 'Great Vibes';
+  color: #cba979;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: clamp(1.6rem, 6vw, 2rem);
+}
+
+.parent-name {
+  font-family: 'Garamond';
+  color: #374151;
+  text-align: center;
+  font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+}
+
+.ampersand-divider {
+  font-family: 'Garamond';
+  color: #4B5563;
+  text-align: center;
+  font-size: clamp(0.875rem, 3.5vw, 1.5rem);
+  margin: 2rem 0;
+}
+
+/* Noda Opening Greeting */
+.blotch-opening-greeting {
+  position: absolute;
+  background: url('Assets/Hiasan/abstract-blur-spotting.webp') center/contain no-repeat;
+  width: 424px;
+  height: 424px;
+  top: 30%;
+  left: -5%;
+  opacity: 0.1;
+  z-index: 1;
+  transform: rotate(30deg);
+}
+
+/* Responsif: blotch size */
+@media (min-width: 768px) {
+  .blotch-opening-greeting {
+    width: 120px; height: 120px;
+  }
+}
+@media (min-width: 1024px) {
+  .blotch-opening-greeting {
+    width: 1024px; height: 1024px;
+  }
+}
+
+
+
+/* === CERITA CINTA KAMI === */
+/* Gaya untuk judul cerita */
+.story-title {
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    margin-bottom: 2rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk subjudul cerita */
+.story-subtitle {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: 3rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk tanggal cerita */
+.story-date {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    margin-top: 0.5rem;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+}
+
+/* Gaya untuk paragraf cerita */
+.story-paragraph {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    margin-top: 1rem;
+    line-height: 1.625;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+    width: 45ch;
+    margin: 0.5rem auto 1.5rem; /* margin 1rem untuk atas, auto untuk kanan dan kiri, 1.5rem untuk bawah */
+}
+
+/* Bentuk latar love story */
+.love-story-background-box {
+    background-color: rgba(203, 169, 121, 0); /* Transparan */
+    border: 2px solid #cba979; /* Outline putih */
+    border-radius: 1rem; /* Sudut melingkar 1rem */
+    padding: 1.5rem; /* Padding internal agar teks tidak menempel outline */
+    margin: 0 auto; /* Memusatkan persegi panjang */
+    width: 95%; /* Mengisi sebagian besar lebar yang tersedia */
+    max-width: 40rem; /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+}
+
+/* Noda Love Story */
+.blotch-love-story {
+  position: absolute;
+  background: url('Assets/Hiasan/abstract-blur-spotting.webp') center/contain no-repeat;
+  width: 424px;
+  height: 424px;
+  top: 30%;
+  left: -5%;
+  opacity: 0.1;
+  z-index: 1;
+  transform: rotate(15deg);
+}
+
+/* Responsif: blotch size */
+@media (min-width: 768px) {
+  .blotch-love-story {
+    width: 120px; height: 120px;
+  }
+}
+@media (min-width: 1024px) {
+  .blotch-love-story {
+    width: 1024px; height: 1024px;
+  }
+}
+
+/* === GAYA COUNTDOWN DAN ACARA === */
+
+/* Gaya untuk judul bagian acara */
+.event-section-title {
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk container hitung mundur */
+.countdown-container {
+    display: flex;
+    gap: 1rem; /* Spasi antar item hitung mundur */
+    margin-top: 2rem;
+    justify-content: center; /* Pusatkan item */
+    align-items: flex-start; /* Sejajarkan item ke awal */
+    width: 100%;
+}
+
+/* Gaya untuk item hitung mundur individual (umum) */
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Sejajarkan teks ke tengah */
+    padding: 0.9rem; /* Padding internal untuk kotak */
+    border-radius: 0.5rem; /* Sudut membulat */
+    background-color: #cba979; /* Warna latar belakang default (bisa ditimpa) */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Bayangan default */
+    width: 50px; /* Lebar minimum untuk kotak agar konsisten (sesuaikan) */
+    height: 70px; /* Tinggi minimum untuk kotak agar konsisten (sesuaikan) */
+    text-align: center; /* Pastikan teks di tengah */
+}
+
+@media (min-width: 768px) {
+  .countdown-container {
+    gap: 1.5rem; /* Tambah spasi antar kotak untuk layar tablet */
+  }
+
+  .countdown-item {
+    width: 70px;
+    height: 90px;
+    padding: 1rem;
+  }
+
+  .countdown-label {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .countdown-container {
+    gap: 2rem; /* Lebih lega untuk desktop */
+  }
+
+  .countdown-item {
+    width: 90px;
+    height: 110px;
+    padding: 1.4rem;
+  }
+
+  .countdown-label {
+    font-size: 1.1rem;
+  }
+}
+
+/* Gaya unik untuk Hari */
+.countdown-days {
+    background-color: #CBA979; /* Warna krem/coklat muda */
+    color: white; /* Warna teks putih */
+}
+/* Menyesuaikan warna angka dan label jika defaultnya beda */
+.countdown-days .countdown-number,
+.countdown-days .countdown-label {
+    color: white;
+}
+
+/* Gaya unik untuk Jam */
+.countdown-hours {
+    background-color: #b59669; /* Warna sedikit lebih gelap dari Hari */
+    color: white;
+}
+.countdown-hours .countdown-number,
+.countdown-hours .countdown-label {
+    color: white;
+}
+
+/* Gaya unik untuk Menit */
+.countdown-minutes {
+    background-color: #8d7a60; /* Warna lebih gelap */
+    color: white;
+}
+.countdown-minutes .countdown-number,
+.countdown-minutes .countdown-label {
+    color: white;
+}
+
+/* Gaya unik untuk Detik */
+.countdown-seconds {
+    background-color: #6a5a40; /* Warna paling gelap, atau merah untuk urgensi */
+    color: white;
+}
+.countdown-seconds .countdown-number,
+.countdown-seconds .countdown-label {
+    color: white;
+}
+
+/* Gaya untuk angka hitung mundur */
+.countdown-number {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-family: 'Montserrat';
+    color: white; /* Warna ungu */
+}
+
+/* Gaya untuk label hitung mundur */
+.countdown-label {
+    font-size: clamp(0.7rem, 3vw, 1rem);
+    margin-top: 0.5rem;
+    font-family: 'Garamond';
+    font-weight: 500;
+    color: white;
+}
+
+/* Gaya untuk subjudul acara */
+.event-subtitle {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    margin-top: 1rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk detail acara */
+.event-detail {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    margin-top: 1rem;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+}
+
+/* Pembungkus untuk tombol untuk mengontrol perataan */
+.button-wrapper {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* Gaya untuk tombol aksi (misalnya, "Detail Lokasi") */
+.action-button {
+    padding: 0.5rem 1rem;
+    background: #cba979; /* Warna Solid*/ /* Jika gradien gunakan ini: linear-gradient(to right, #3B82F6, #14B8A6); /* Gradien biru-hijau */
+    color: white;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+    display: inline-block; /* Pastikan berperilaku seperti tombol */
+}
+.action-button:hover {
+    background: #b59669; /* jika gradien gunakan ini: linear-gradient(to right, #2563EB, #0D9488); /* Gradien lebih gelap saat hover */
+    transform: scale(1.05);
+}
+
+/* Gaya untuk judul RSVP */
+.rsvp-title {
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    margin-top: 2rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk tombol RSVP */
+.rsvp-button {
+    padding: 0.5rem 1.3rem;
+    background: #cba979; /* Jika gradien gunakan ini: linear-gradient(to right, #22C55E, #84CC16); /* Gradien hijau-lime */
+    color: white;
+    font-weight: bold;
+    font-size: 0.7rem;
+    border-radius: 9999px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+    margin-bottom: 2rem;
+    display: inline-block; /* Pastikan berperilaku seperti tombol */
+}
+.rsvp-button:hover {
+    background: #b59669; /* jika gradien gunakan ini: linear-gradient(to right, #16A34A, #65A30D); /* Gradien lebih gelap saat hover */
+    transform: scale(1.05);
+}
+
+.box-countdown {
+    position: relative;
+    overflow: hidden;
+    background-color: #f5f0d5;
+    border: 2px solid white; /* Outline putih */
+    border-radius: 1rem; /* Sudut melingkar 1rem */
+    padding: 1.5rem; /* Padding internal agar teks tidak menempel outline */
+    margin: 0 auto; /* Memusatkan persegi panjang */
+    width: 95%; /* Mengisi sebagian besar lebar yang tersedia */
+    max-width: 40rem; /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+    min-height: 30vh;
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.box-event {
+	z-index:0;
+    position: relative;
+    overflow: hidden;
+    background-color: #f5f0d5;
+    border: 2px solid white; /* Outline putih */
+    border-radius: 1rem; /* Sudut melingkar 1rem */
+    padding: 1.5rem; /* Padding internal agar teks tidak menempel outline */
+    margin: 10px auto 0; /* Memusatkan persegi panjang */
+    width: 95%; /* Mengisi sebagian besar lebar yang tersedia */
+    max-width: 40rem; /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+    min-height: 100vh;
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Gaya Spesifik untuk Hiasan di .box-event */
+
+/* Turunkan decoration-layer di bawah konten */
+.box-event > .decoration-layer {
+  position: absolute; /* sudah sesuai */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;        /* di sini */
+}
+
+
+.box-event .decoration-layer .deco-item {
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3)); /* Filter umum untuk hiasan di event */
+}
+
+.box-event .decoration-layer .deco-item.kotak-event-left.has-bunga-tangkai {
+    width: 338px;
+    height: 506px;
+    top: 10px; /* Gunakan bottom bukan top */
+    left: -150px;
+    filter: sepia(100%) opacity(20%);
+    transform: rotate(15deg);
+}
+
+.box-event .decoration-layer .deco-item.kotak-event-right.has-bunga-tangkai {
+    width: 338px;
+    height: 506px;
+    bottom: -180px; /* Gunakan bottom bukan top */
+    right: -150px;
+    filter: sepia(100%) opacity(20%);
+    transform: scaleX(-1);
+}
+
+/* ==== GALERI === */
+
+/* Gaya Hiasan galeri */
+
+#gallery-section .decoration-layer .deco-item {
+    /* Gaya umum untuk semua hiasan di gallery (bisa beda filter atau animasi) */
+    
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3)); /* Mungkin bayangan lebih tipis */
+    /*animation: none; /* Mungkin tidak ada animasi atau animasi yang berbeda */
+    
+}
+
+/* Hiasan kiri utama */
+#gallery-section .decoration-layer .deco-item.top-left-gallery.has-bunga-saja {
+  width: var(--deco-gallery-size-main);
+  height: var(--deco-gallery-size-main);
+  top: var(--deco-gallery-top-main);
+  left: var(--deco-gallery-left-main);
+}
+
+/* Hiasan kanan utama */
+#gallery-section .decoration-layer .deco-item.top-right-gallery.has-bunga-saja {
+  width: var(--deco-gallery-size-main);
+  height: var(--deco-gallery-size-main);
+  top: var(--deco-gallery-top-main);
+  right: var(--deco-gallery-right-main);
+  transform: scaleX(-1);
+}
+
+/* Overlay kiri */
+#gallery-section .decoration-layer .deco-item.top-left-overlay-gallery.has-bunga-saja {
+  width: var(--deco-gallery-size-overlay);
+  height: var(--deco-gallery-size-overlay);
+  top: var(--deco-gallery-top-overlay);
+  left: var(--deco-gallery-left-overlay);
+}
+
+/* Overlay kanan */
+#gallery-section .decoration-layer .deco-item.top-right-overlay-gallery.has-bunga-saja {
+  width: var(--deco-gallery-size-overlay);
+  height: var(--deco-gallery-size-overlay);
+  top: var(--deco-gallery-top-overlay);
+  right: var(--deco-gallery-right-overlay);
+  transform: scaleX(-1);
+}
+
+
+/* Gaya untuk judul galeri */    
+.gallery-title {
+    font-size: clamp(1.875rem, 5vw, 4rem);
+    margin-bottom: 2rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Gaya untuk tata letak grid galeri */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Kolom tunggal di layar kecil */
+    gap: 1.5rem; /* Jarak antar item grid */
+    margin-left: auto; /* Pusatkan */
+    margin-right: auto; /* Pusatkan */
+    width: 100%;
+}
+/* Dua kolom di layar sedang */
+@media (min-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+/* Tiga kolom di layar besar */
+@media (min-width: 1024px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Gaya untuk placeholder gambar galeri */
+.gallery-image-placeholder {
+    width: 100%;
+    height: clamp(16rem, 30vw, 24rem); /* Tinggi tetap */
+    background-color: #E5E7EB;
+    border-radius: 0.5rem;
+    overflow: hidden; /* Penting untuk memastikan gambar tidak keluar dari border-radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+    font-size: 0.875rem;
+    font-style: italic;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-image-placeholder {
+    height: 20rem; /* Sedikit lebih tinggi dari default 16rem */
+  }
+}
+
+
+/* Gaya untuk foto di galeri */
+.gallery-image {
+    width: 100%; /* Membuat gambar mengisi lebar wadahnya */
+    height: 100%; /* Atur tinggi tetap untuk konsistensi (sesuaikan) */
+    object-fit: cover; /* Penting: Memastikan gambar mengisi area tanpa terdistorsi */
+    display: block; /* Menghilangkan spasi ekstra di bawah gambar */
+    transition: transform 0.3s ease-in-out; /* Efek transisi saat hover */
+}
+
+.gallery-image:hover {
+    transform: scale(1.05); /* Sedikit memperbesar gambar saat di-hover */
+    filter: brightness(0.9); /* Sedikit meredupkan gambar saat di-hover */
+}
+
+/* === GAYA BARU UNTUK BAGIAN HADIAH === */
+
+/* container gift (copy pola .box-event) */
+.gift-section-background-box {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(203,169,121,0);
+  border: 2px solid #cba979;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 10px auto 0;
+  width: 95%;
+  max-width: 40rem;
+  box-sizing: border-box;
+}
+
+/* layer dekorasi full-cover */
+.gift-section-background-box > .decoration-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* filter umum untuk deco-item */
+.gift-section-background-box .decoration-layer .deco-item {
+  position: absolute;
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+}
+
+/* bunga-tangkai kiri */
+.gift-section-background-box .decoration-layer .deco-item.kotak-gift-left.has-bunga-tangkai {
+  width: 338px;
+  height: 506px;
+  top: 10px;
+  left: -150px;
+  filter: sepia(100%) opacity(0.3);
+  transform: rotate(15deg);
+}
+
+.gift-title {
+    font-size: clamp(1.875rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+.gift-description {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    line-height: 1.625;
+    margin-bottom: 2rem;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+    max-width: 40ch; /* Batasi lebar teks agar mudah dibaca */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* === GAYA PENUTUP === */
+
+/* container gift (copy pola .box-event) */
+.closing-background-box {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(203,169,121,0);
+  border: 2px solid #cba979;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 10px auto 0;
+  width: 95%;
+  max-width: 40rem;
+  box-sizing: border-box;
+}
+
+/* layer dekorasi full-cover */
+.closing-background-box > .decoration-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* filter umum untuk deco-item */
+.closing-background-box .decoration-layer .deco-item {
+  position: absolute;
+  filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+}
+
+/* bunga-tangkai kiri */
+.closing-background-box .decoration-layer .deco-item.kotak-penutup-right.has-bunga-tangkai {
+  width: 300px;
+  height: 449.6px;
+  bottom: -180px;
+  right: -150px;
+  filter: sepia(100%) opacity(0.3);
+  transform: scaleX(-1);
+}
+
+/* Gaya untuk kutipan penutup */
+.closing-quote {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    line-height: 1.625;
+    margin-bottom: 2rem;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+}
+
+/* Gaya untuk intro tanda tangan penutup */
+.closing-signature-intro {
+    font-size: clamp(0.8rem, 3.5vw, 1.25rem);
+    margin-top: 1rem;
+    font-family: 'Garamond';
+    color: #374151;
+    text-align: center;
+}
+
+/* Gaya untuk nama di bagian penutup */
+.closing-name-dinda, .closing-name-angga {
+    font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.25;
+    margin-top: 1rem;
+    font-family: 'Great Vibes';
+    text-align: center;
+}
+
+.closing-name-dinda { color: #cba979; }
+.closing-name-angga { color: #cba979; }
+
+/* Gaya untuk ampersand di bagian penutup */
+.closing-name-ampersand {
+    font-size: 1rem;
+    margin-top: 1rem;
+    font-family: 'Garamond';
+    color: #4B5563;
+    text-align: center;
+}
+
+/* Gaya untuk salam penutup akhir */
+.closing-greeting-final {
+    font-size: clamp(1rem, 3.5vw, 2rem);
+    margin-top: 2rem;
+    font-family: 'Great Vibes';
+    color: #cba979;
+    text-align: center;
+}
+
+/* Bentuk latar closing */
+.closing-background-box {
+    background-color: rgba(203, 169, 121, 0); /* Transparan */
+    border: 2px solid #cba979; /* Outline putih */
+    border-radius: 1rem; /* Sudut melingkar 1rem */
+    padding: 1.5rem; /* Padding internal agar teks tidak menempel outline */
+    margin: 0 auto; /* Memusatkan persegi panjang */
+    width: 95%; /* Mengisi sebagian besar lebar yang tersedia */
+    max-width: 40rem; /* Batasi lebar maksimum agar tidak terlalu lebar di layar besar */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar total */
+}
+
+/* GAYA PROMOSI */
+/* Gaya untuk teks promosi */
+.promotion-text {
+    font-size: 0.5rem;
+    font-family: 'Montserrat';
+    color: #4B5563;
+    text-align: center;
+}
+
+/* === PEMISAH === */
+/* Gaya untuk pemisah bagian */
+.section-divider {
+    width: 50%; /* Setengah lebar di layar kecil */
+    max-width: 33.333333%; /* Lebar maksimum untuk konsistensi */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-top-width: 2px; /* Batas atas 2px */
+    border-color: #cba979; /* Warna pink muda */
+    opacity: 0.5; /* Semi-transparan */
+    margin-left: auto; /* Pusatkan */
+    margin-right: auto; /* Pusatkan */
+}
+@media (min-width: 768px) {
+    .section-divider {
+        width: 33.333333%; /* Sepertiga lebar di layar sedang */
+    }
+}
+
+/* Gaya untuk pemisah bagian yang lebih besar */
+.section-divider-large {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    margin-left: auto; /* Pusatkan */
+    margin-right: auto; /* Pusatkan */
+}
+
+	/* ==== Musik Kontrol SVG ==== */
+	
+#media-toggle {
+  background: #f5f0d5;
+  color: #CBA979; /* warna isi ikon */
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  padding: 4px;
+}
+
+#media-toggle:hover {
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+
+#media-toggle.playing svg {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+/* === GAYA UNTUK POPUP FOTO GALERI === */
+#gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+
+#gallery-lightbox.hidden {
+  display: none;
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.lightbox-close {
+  top: 1rem;
+  right: 1rem;
+}
+
+.lightbox-prev {
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-next {
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* === GAYA UNTUK POPUP (MODAL) === */
+.modal {
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di viewport */
+    z-index: 1000; /* Di atas konten lain */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Aktifkan scroll jika konten terlalu panjang */
+    background-color: rgba(0,0,0,0.7); /* Latar belakang gelap transparan */
+    display: flex; /* Menggunakan flexbox untuk memusatkan modal-content */
+    justify-content: center;
+    align-items: center;
+    padding: 1rem; /* Padding agar modal tidak menempel tepi layar di mobile */
+}
+
+.modal-content {
+    background-color: #fefefe; /* Latar belakang putih untuk kotak modal */
+    margin: auto; /* Akan dipusatkan oleh flexbox dari .modal */
+    padding: 2rem;
+    border-radius: 1rem; /* Sudut membulat */
+    width: 90%; /* Lebar responsif */
+    max-width: 500px; /* Lebar maksimum agar tidak terlalu besar di desktop */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Bayangan */
+    position: relative; /* Untuk posisi tombol close */
+    animation: fadeInScale 0.3s ease-out forwards; /* Animasi muncul */
+    max-height: 90vh; /* Batasi tinggi modal agar bisa scroll jika konten banyak */
+    overflow-y: auto; /* Aktifkan scroll di dalam modal jika kontennya lebih dari max-height */
+}
+
+/* Animasi untuk modal muncul */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-title {
+    font-family: 'Great Vibes';
+    font-size: 1.5rem;
+    color: #cba979;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+    .modal-title {
+        font-size: 2rem;
+    }
+}
+
+.modal-section {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee; /* Garis pemisah antar section */
+    padding-bottom: 1.5rem;
+}
+.modal-section:last-child {
+    border-bottom: none; /* Hapus garis di section terakhir */
+}
+
+.modal-subtitle {
+    font-family: 'Garamond';
+    font-size: 1.2rem;
+    color: #4B5563;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.info-item {
+    display: flex;
+    flex-wrap: wrap; /* Izinkan wrapping di layar kecil */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.info-item .info-label {
+    font-family: 'Garamond';
+    font-size: 0.85rem;
+    color: #6B7280;
+    flex-basis: 30%; /* Ambil 30% lebar untuk label */
+    text-align: left;
+    margin-right: 0.5rem;
+}
+
+.info-item .info-value {
+    font-family: 'Montserrat';
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    flex-basis: 55%; /* Ambil 55% lebar untuk nilai */
+    text-align: left;
+    word-break: break-all; /* Memastikan teks panjang pecah baris */
+}
+/* Untuk alamat, biarkan full width agar lebih rapi */
+.alamat-item .info-value {
+    flex-basis: 100%; /* Ambil 100% lebar */
+    margin-top: 0.5rem;
+    font-weight: normal; /* Kembali ke normal untuk alamat yang mungkin lebih panjang */
+}
+
+.info-item .copy-button {
+    background-color: #cba979;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-basis: auto; /* Ukuran otomatis */
+    margin-left: auto; /* Dorong ke kanan */
+}
+
+.info-item .copy-button:hover {
+    background-color: #b59669;
+    transform: translateY(-1px);
+}
+
+.info-item .copy-button:active {
+    transform: translateY(0);
+}
+
+.modal-closing-note {
+    font-family: 'Garamond';
+    font-size: 0.85rem;
+    color: #6B7280;
+    text-align: center;
+    margin-top: 2rem;
+    font-style: italic;
+}
+
+/* === @KEYFRAMES ANIMASI === */
+
+/* Animasi keyframe untuk meluncur dari atas */
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%); /* Mulai di atas */
+        opacity: 0; /* Mulai tidak terlihat */
+    }
+    100% {
+        transform: translateY(0); /* Berakhir di posisi asli */
+        opacity: 1; /* Berakhir terlihat */
+    }
+}
+
+/* Animasi keyframe untuk meluncur dari bawah */
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%); /* Mulai di bawah */
+        opacity: 0; /* Mulai tidak terlihat */
+    }
+    100% {
+        transform: translateY(0); /* Berakhir di posisi asli */
+        opacity: 1; /* Berakhir terlihat */
+    }
+}
+
+/* --- PENERAPAN ANIMASI PADA ELEMEN/HALAMAN TERTENTU --- */
+
+/* Halaman sampul/cover */
+/* --- Kelas Efek Animasi (Modular) --- */
+.cover-element.slide-from-top {
+    animation: slideInFromTop 2s ease-out forwards;
+}
+
+.cover-element.slide-from-bottom {
+    animation: slideInFromBottom 2s ease-out forwards;
+}
+
+/* --- Kelas Animation Delay (Utilitas) --- */
+/* Untuk slideInFromTop (sesuaikan durasi jika berbeda) */
+.fast-delay-1 { animation-delay: 0.1s; } /* Sesuaikan delay sesuai keinginan */
+.fast-delay-2 { animation-delay: 0.2s; }
+.fast-delay-3 { animation-delay: 0.3s; }
+
+/* Untuk slideInFromBottom (sesuaikan delay jika berbeda, biasanya lebih lambat) */
+.slow-delay-1 { animation-delay: 0.6s; }
+.slow-delay-2 { animation-delay: 0.8s; }
+.slow-delay-3 { animation-delay: 1.0s; } /* Contoh, sesuaikan angkanya */
+
+/* --- Aturan Khusus (jika benar-benar unik) --- */
+/* Misalnya, jika tombol butuh display: inline-block yang unik */
+/*#open-invitation-button {
+    display: inline-block;
+    /* Tidak perlu lagi opacity: 0 atau animasi di sini */
+/*} */
+
+/* Tambahan: Gaya untuk animasi on-scroll jika Anda menambahkannya */
+/* .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+/* Definisi eksplisit untuk kelas 'hidden' */
+.hidden {
+    display: none !important;
+}
+.no-scroll {
+    overflow: hidden !important;
+}
+

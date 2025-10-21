@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Dinda & Angga</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section id="cover-page">
+    <div class="cover-konten">
+        <h1 class="cover-element slide-from-top fast-delay-1">Dinda</h1>
+        <h1 class="cover-element slide-from-top fast-delay-2">&</h1>
+        <h1 class="cover-element slide-from-top fast-delay-3">Angga</h1>
+        
+        <p class="cover-element slide-from-bottom slow-delay-1">Kepada Yth.</p>
+        <p class="cover-element slide-from-bottom slow-delay-2">Bapak/Ibu/Saudara/i </p>
+        <p class="cover-element slide-from-bottom slow-delay-1 guest-name-line">[Nama Tamu]</p>
+        
+        <button id="open-invitation-button" class="cover-element slide-from-bottom slow-delay-3">Buka Undangan</button>
+    </div>
+    </section>
+	
+    <main id="main-content-wrapper" class="hidden">
+	
+		<!-- Kontrol Musik -->
+<div id="music-control">
+  <audio id="bg-music" src="Assets/Audio/you_are_the_reason.mp3" preload="auto" autoplay loop muted>
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+
+<!-- Ikon Musik Interaktif -->
+<div id="media-toggle" style="position: fixed; bottom: 24px; right: 24px; z-index: 999; cursor: pointer;">
+  <svg id="play-icon" viewBox="0 0 100 100" width="36" height="36">
+    <circle cx="50" cy="50" r="48" fill="#f5f0d5" stroke="currentColor" stroke-width="4"/>
+    <polygon points="40,30 70,50 40,70" fill="currentColor"/>
+  </svg>
+
+  <svg id="pause-icon" viewBox="0 0 100 100" width="36" height="36" style="display: none;">
+    <circle cx="50" cy="50" r="48" fill="#f5f0d5" stroke="currentColor" stroke-width="4"/>
+    <rect x="35" y="30" width="10" height="40" fill="currentColor"/>
+    <rect x="55" y="30" width="10" height="40" fill="currentColor"/>
+  </svg>
+</div>
+
+        <!-- Section Initial Invitation -->
+<section id="initial-invitation-section" class="has-texture">
+  <div class="decoration-layer"> <!-- baiknya ditaruh di atas/di luar class="section-content" -->
+    <div class="deco-item top-left-initial has-bunga-saja"></div> <!-- hiasan kiri-atas -->
+    <div class="deco-item top-left-overlay-initial has-bunga-saja"></div> <!-- hiasan kiri-atas-2 -->
+    <div class="deco-item top-right-initial has-bunga-saja"></div> <!-- hiasan kanan-atas -->
+    <div class="deco-item top-right-overlay-initial has-bunga-saja"></div> <!-- hiasan kanan-atas-2 -->
+
+    <div class="deco-item bottom-left-initial has-bunga-saja"></div> <!-- hiasan kiri-bawah -->
+    <div class="deco-item bottom-left-overlay-initial has-bunga-saja"></div> <!-- hiasan kiri-bawah-2 -->
+    <div class="deco-item bottom-right-initial has-bunga-saja"></div> <!-- hiasan kanan-bawah -->
+    <div class="deco-item bottom-right-overlay-initial has-bunga-saja"></div> <!-- hiasan kanan-bawah-2 -->
+
+    <!-- Elemen tekstur (tidak dianimasikan) -->
+    <div class="deco-item section-texture"></div>
+  </div>
+
+  <!-- Noda (tidak dianimasikan) -->
+  <div class="deco-item blotch-initial-invitation"></div>
+
+  <!-- Konten utama yang akan dianimasikan -->
+  <div class="latarbelakang-halaman-awal section-content">
+    <div class="awal-image-placeholder fade-up-on-scroll">
+      <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-1.png"
+           alt="Foto Berdua baju adat jawa cream"
+           class="awal-mempelai-image fade-up-on-scroll">
+    </div>
+    <h2 class="main-name-dinda fade-up-on-scroll">Dinda</h2>
+    <h2 class="main-name-ampersand fade-up-on-scroll">&</h2>
+    <h2 class="main-name-angga fade-up-on-scroll">Angga</h2>
+    <p class="invitation-text fade-up-on-scroll">Kami mengundang anda untuk berbagi kebahagiaan</p>
+    <p class="event-date fade-up-on-scroll">30 05 2025</p>
+  </div>
+</section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="quote-section">
+            <div class="quote-background-box slide-left-on-scroll">
+                <p class="quote-text slide-left-on-scroll">
+                    “Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berpikir.”
+                </p>
+                <p class="quote-source slide-left-on-scroll">
+                    QS. Ar-Rum: 21
+                </p>
+            </div>
+        </section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="opening-greeting-and-profile-section" class="has-texture">
+			<div class="decoration-layer">
+				<div class="deco-item section-texture"></div>
+				</div>
+				<div class="deco-item blotch-opening-greeting"></div>
+				
+	<div class="latarbelakang-pembuka section-content">
+    <p class="opening-greeting fade-up-on-scroll">Assalamualaikum warahmatullahi wabarakatuh</p>
+    <p class="opening-invitation fade-up-on-scroll">
+      Dengan penuh rasa syukur, kami mengundang bapak/ibu/saudara/i untuk menghadiri pernikahan kami.
+    </p>
+
+    <!-- Wrapper foto Dinda dengan posisi relatif -->
+    <div class="image-wrapper profile-placeholder fade-up-on-scroll">
+      <img
+        src="Assets/Foto.pengantin/Berdua jawa cream 0001-3.png"
+        alt="Foto Dinda"
+        class="dinda-image"
+      />
+      <div class="deco-item dinda-photos-pembuka has-bunga-tangkai"></div>
+      <div class="deco-item dinda-photos-pembuka has-bunga-saja"></div>
+    </div>
+    <p class="full-name-dinda fade-up-on-scroll">Dinda Nadira Maharani</p>
+    <p class="parent-name fade-up-on-scroll">Putri bapak ABC dan ibu EFG</p>
+
+    <p class="ampersand-divider fade-up-on-scroll">&</p>
+
+    <!-- Wrapper foto Angga dengan posisi relatif -->
+    <div class="image-wrapper profile-placeholder fade-up-on-scroll">
+      <img
+        src="Assets/Foto.pengantin/Berdua jawa cream 0001-3.png"
+        alt="Foto Angga"
+        class="angga-image"
+      />
+      <div class="deco-item angga-photos-pembuka has-bunga-tangkai"></div>
+      <div class="deco-item angga-photos-pembuka has-bunga-saja"></div>
+    </div>
+    <p class="full-name-angga fade-up-on-scroll">Angga Pratama Putra</p>
+    <p class="parent-name fade-up-on-scroll">Putra bapak WXY dan ibu ZAA</p>
+  </div>
+</section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="love-story-section" class="has-texture">
+			<div class="decoration-layer">
+				<div class="deco-item section-texture"></div>
+				</div>
+				
+				<div class="deco-item blotch-love-story"></div>
+				
+			<div class="love-story-background-box">
+            <div class="section-content">
+                <h2 class="story-title fade-up-on-scroll">Cerita Cinta Kami</h2>
+
+                <h3 class="story-subtitle fade-up-on-scroll">Awal Pertemuan</h3>
+                <p class="story-date fade-up-on-scroll">Mei 2021</p>
+                <p class="story-paragraph fade-up-on-scroll">
+                    Takdir mempertemukan kami secara daring di bulan Mei 2021. Dari sebuah percakapan acak anonim, obrolan berlanjut ke pesan pribadi. Saling bertukar kabar hingga akhirnya di tahun 2022, sepakat untuk bertemu. Setelahnya, pertemuan semakin sering terjadi, dan...
+                </p>
+
+                <hr class="section-divider-large section-divider">
+
+                <h3 class="story-subtitle fade-up-on-scroll">Perkenalan Lebih Dalam</h3>
+                <p class="story-date fade-up-on-scroll">Maret 2023</p>
+                <p class="story-paragraph fade-up-on-scroll">
+                    ...di bulan Maret 2023, kami berdua sepakat untuk saling mengenal lebih jauh, menapaki perjalanan bersama tanpa status pacaran. Hingga...
+                </p>
+
+                <hr class="section-divider-large section-divider">
+
+                <h3 class="story-subtitle fade-up-on-scroll">Ikatan Janji</h3>
+                <p class="story-date fade-up-on-scroll">13 Agustus 2024</p>
+                <p class="story-paragraph fade-up-on-scroll">
+                    ...tibalah bulan Agustus 2024. Tepat di tanggal 13 Agustus, yang juga bertepatan dengan ulang tahun Dinda, pertunangan kami resmi terlaksana.
+                </p>
+
+                <hr class="section-divider-large section-divider">
+
+                <h3 class="story-subtitle fade-up-on-scroll">Pernikahan</h3>
+                <p class="story-date fade-up-on-scroll">30 Mei 2025</p>
+                <p class="story-paragraph fade-up-on-scroll">
+                    Dan kini, tiba di hari yang paling bahagia, 30 Mei 2025. Kisah cinta kami "berakhir" sekaligus dimulai dengan langkah yang lebih serius, mengikat janji suci di hadapan Tuhan dan keluarga.
+                </p>
+            </div>
+			</div>
+        </section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="event-rsvp-section">
+           <div class="box-countdown section-content">
+                <h2 class="event-section-title fade-up-on-scroll">Menjelang Hari Bahagia</h2>
+                <div class="countdown-container fade-up-on-scroll">
+                    <div class="countdown-item fade-up-on-scroll">
+                        <span id="days" class="countdown-number fade-up-on-scroll">00</span>
+                        <span class="countdown-label fade-up-on-scroll">Hari</span>
+                    </div>
+                    <div class="countdown-item fade-up-on-scroll">
+                        <span id="hours" class="countdown-number fade-up-on-scroll">00</span>
+                        <span class="countdown-label fade-up-on-scroll">Jam</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number fade-up-on-scroll">00</span>
+                        <span class="countdown-label fade-up-on-scroll">Menit</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number fade-up-on-scroll">00</span>
+                        <span class="countdown-label fade-up-on-scroll">Detik</span>
+                    </div>
+                </div>
+            </div>
+
+                <div class="box-event section-content">
+                <div class="decoration-layer">
+                <div class="deco-item kotak-event-left has-bunga-tangkai"></div>
+                <div class="deco-item kotak-event-right has-bunga-tangkai"></div>
+                </div>
+                <h3 class="event-subtitle fade-up-on-scroll">Akad Nikah</h3>
+                <p class="event-detail fade-up-on-scroll">Sabtu, 30 Mei 2025</p>
+                <p class="event-detail fade-up-on-scroll">Pukul 10.00 WIB</p>
+                <p class="event-detail fade-up-on-scroll">Jalan Mawar no.64 Kec.Teweh tengah Kab.Muara Teweh</p>
+                <div class="button-wrapper fade-up-on-scroll">
+                    <a href="https://maps.app.goo.gl/rvRPcHJjP3oDrgcK6" target="_blank" class="action-button">Detail Lokasi</a>
+                </div>
+
+                <hr class="section-divider-large section-divider">
+
+                <h3 class="event-subtitle fade-up-on-scroll">Resepsi Pernikahan</h3>
+                <p class="event-detail fade-up-on-scroll">Minggu, 31 Mei 2025</p>
+                <p class="event-detail fade-up-on-scroll">Pukul 10.00 WIB</p>
+                <p class="event-detail fade-up-on-scroll">Jalan Mawar no.64 Kec.Teweh tengah Kab.Muara Teweh</p>
+                <div class="button-wrapper fade-up-on-scroll">
+                    <a href="https://maps.app.goo.gl/rvRPcHJjP3oDrgcK6" target="_blank" class="action-button">Detail Lokasi</a>
+                </div>
+
+                <hr class="section-divider-large section-divider">
+
+                <h3 class="rsvp-title fade-up-on-scroll">Konfirmasi Kehadiran</h3>
+                <div class="button-wrapper fade-up-on-scroll">
+                    <a href="https://forms.gle/E4SLMF1c2BG1d2q1A" target="_blank" class="rsvp-button">RSVP</a>
+                </div>
+            </div>
+        </section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="gallery-section">
+            <div class="decoration-layer"> <!-- baiknya ditaruh di atas/di luar class="section-content" -->
+                <div class="deco-item top-left-gallery has-bunga-saja"></div> <!-- hiasan kiri-atas -->
+                <div class="deco-item top-left-overlay-gallery has-bunga-saja"></div> <!-- hiasan kiri-atas-2 -->
+                <div class="deco-item top-right-gallery has-bunga-saja"></div> <!-- hiasan kanan-atas -->
+                <div class="deco-item top-right-overlay-gallery has-bunga-saja"></div> <!-- hiasan kanan-atas-2 -->
+            </div>
+            
+            <div class="section-content">
+                <h2 class="gallery-title fade-up-on-scroll">Galeri</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-1.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-2.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-3.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-4.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-5.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                    <div class="gallery-image-placeholder fade-up-on-scroll">
+                        <img src="Assets/Foto.pengantin/Berdua jawa cream 0001-6.png" alt="Foto Berdua baju adat jawa cream" class="gallery-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="gift-section">
+			<div class="gift-section-background-box section-content">
+            <div class="decoration-layer"> <!-- baiknya ditaruh di atas/di luar class="section-content" -->
+                <div class="deco-item kotak-gift-left has-bunga-tangkai"></div>
+			</div>	
+                <h2 class="gift-title fade-up-on-scroll">Hadiah Cinta </h2>
+                <p class="gift-description fade-up-on-scroll">
+                    Doa restu Anda adalah kado terbaik bagi kami. Namun, jika Anda ingin memberikan tanda cinta kasih, Anda bisa melakukannya melalui informasi di bawah ini.
+                </p>
+                <div class="button-wrapper fade-up-on-scroll">
+                    <button id="open-gift-modal-button" class="action-button fade-up-on-scroll">Kirim Hadiah</button>
+                </div>
+            </div>
+			</div>
+        </section>
+        
+        <!--hr class="section-divider"--> 
+        <section id="closing-section">
+			<div class="closing-background-box section-content">
+			<div class="decoration-layer"> <!-- baiknya ditaruh di atas/di luar class="section-content" -->
+                <div class="deco-item kotak-penutup-right has-bunga-tangkai"></div>
+			</div>
+            
+                <p class="closing-quote fade-up-on-scroll">
+                    Kehadiran, doa, dan restu bapak/ibu/saudara/i<br>
+                    adalah suatu kehormatan dan kebahagiaan yang tak ternilai.
+                </p>
+                <p class="closing-signature-intro fade-up-on-scroll">Kami yang berbahagia</p>
+                <h2 class="closing-name-dinda fade-up-on-scroll">Dinda</h2>
+                <h2 class="closing-name-ampersand fade-up-on-scroll">&</h2>
+                <h2 class="closing-name-angga fade-up-on-scroll">Angga</h2>
+                <p class="closing-greeting-final fade-up-on-scroll">Waalaikumussalam warahmatullahi wabarakatuh</p>
+            </div>
+			</div>
+        </section>
+
+        <!--hr class="section-divider"-->
+
+        <section id="promotion-section">
+            <div class="section-content">
+                <p class="promotion-text">Didesain oleh NISEJA</p>
+            </div>
+        </section>
+
+    </main>
+
+	<!--Popup Lightbox foto galeri-->
+	<div id="gallery-lightbox" class="gallery-lightbox hidden">
+		<button class="lightbox-close" aria-label="Tutup">×</button>
+		<button class="lightbox-prev" aria-label="Sebelumnya">←</button>
+		<img class="lightbox-image" src="" alt="">
+		<button class="lightbox-next" aria-label="Berikutnya">→</button>
+	</div>	
+	
+	<!--Popup Gift-->
+    <div id="gift-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <h3 class="modal-title">Opsi Pemberian Hadiah</h3>
+
+            <div class="modal-section">
+                <h4 class="modal-subtitle">Transfer Bank</h4>
+                <div class="info-item">
+                    <p class="info-label">Bank BCA</p>
+                    <p id="bca-account" class="info-value">1234567890 (a.n. Dinda Nadira)</p>
+                    <button class="copy-button" data-target="bca-account">Salin</button>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Bank Mandiri</p>
+                    <p id="mandiri-account" class="info-value">0987654321 (a.n. Angga Pratama)</p>
+                    <button class="copy-button" data-target="mandiri-account">Salin</button>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Bank BRI</p>
+                    <p id="bri-account" class="info-value">1122334455 (a.n. Dinda Nadira)</p>
+                    <button class="copy-button" data-target="bri-account">Salin</button>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Bank BNI</p>
+                    <p id="bni-account" class="info-value">6677889900 (a.n. Angga Pratama)</p>
+                    <button class="copy-button" data-target="bni-account">Salin</button>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h4 class="modal-subtitle">Transfer E-Wallet</h4>
+                <div class="info-item">
+                    <p class="info-label">Dana</p>
+                    <p id="dana-ewallet" class="info-value">081234567890 (a.n. Dinda Nadira)</p>
+                    <button class="copy-button" data-target="dana-ewallet">Salin</button>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Gopay</p>
+                    <p id="gopay-ewallet" class="info-value">087654321098 (a.n. Angga Pratama)</p>
+                    <button class="copy-button" data-target="gopay-ewallet">Salin</button>
+                </div>
+                 <div class="info-item">
+                    <p class="info-label">OVO</p>
+                    <p id="ovo-ewallet" class="info-value">081122334455 (a.n. Dinda Nadira)</p>
+                    <button class="copy-button" data-target="ovo-ewallet">Salin</button>
+                </div>
+                 <div class="info-item">
+                    <p class="info-label">LinkAja</p>
+                    <p id="linkaja-ewallet" class="info-value">085566778899 (a.n. Angga Pratama)</p>
+                    <button class="copy-button" data-target="linkaja-ewallet">Salin</button>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h4 class="modal-subtitle">Kirim Fisik</h4>
+                <div class="info-item">
+                    <p class="info-label">Penerima</p>
+                    <p id="receiver-name" class="info-value">Dinda Nadira Maharani / Angga Pratama Putra</p>
+                    <button class="copy-button" data-target="receiver-name">Salin</button>
+                </div>
+                <div class="info-item">
+                    <p class="info-label">Nomor Telepon</p>
+                    <p id="receiver-phone" class="info-value">0812-3456-7890</p>
+                    <button class="copy-button" data-target="receiver-phone">Salin</button>
+                </div>
+                <div class="info-item alamat-item">
+                    <p class="info-label">Alamat Lengkap</p>
+                    <p id="full-address" class="info-value">
+                        Jalan Kemuning No. 123, RT 001/RW 002,<br>
+                        Kelurahan Mekar Sari, Kecamatan Indah Jaya,<br>
+                        Kota Bahagia, Provinsi Damai, 12345
+                    </p>
+                    <button class="copy-button" data-target="full-address">Salin</button>
+                </div>
+            </div>
+            <p class="modal-closing-note">Terima kasih atas perhatian dan doa restu Anda!</p>
+        </div>
+    </div>
+	
+	<script src="script.js"></script>
+	<script src="set-cover-height.js" defer></script>
+
+
+</body>
+</html>
+
+
+
+
+
